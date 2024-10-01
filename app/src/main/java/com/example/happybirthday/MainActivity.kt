@@ -1,6 +1,7 @@
 package com.example.happybirthday
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -10,14 +11,19 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -36,7 +42,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
 //                    GreetingText(message = "Happy Birthday Sam!", from = "From Emma")
-                    GreetingImage(message = "Happy Birthday Sam!", from = "From Emma")
+                    GreetingImage(message = "Happy Birthday Damian!", from = "From Anxo")
                 }
             }
         }
@@ -51,18 +57,36 @@ fun GreetingText(message: String,from: String, modifier: Modifier = Modifier){
     ) {
         Text(
             text = message,
-            fontSize = 100.sp,
+            fontSize = 90.sp,
             lineHeight = 116.sp,
             textAlign = TextAlign.Center,
         )
         Text(
             text = from,
             fontSize = 36.sp,
+            fontStyle = FontStyle.Italic,
             modifier = Modifier
                 .padding(16.dp)
                 .align(alignment = Alignment.End)
 
         )
+        Button(
+            onClick = { Log.d("MainActivity", "Button clicked!") },
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .size(300.dp, 100.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color.Blue, // Color de fondo del botón
+                contentColor = Color.White,   // Color del texto del botón
+
+            )
+            ) {
+            Text(
+                text = "Click me!",
+                fontSize = 24.sp,
+            )
+            }
+
     }
 }
 
