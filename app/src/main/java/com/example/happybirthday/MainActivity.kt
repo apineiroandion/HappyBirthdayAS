@@ -18,6 +18,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -51,6 +55,10 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun GreetingText(message: String,from: String, modifier: Modifier = Modifier){
+    //el remember es para que no se pierda el valor de la variable
+    //mutableStateOf es para que el valor de la variable pueda cambiar
+    var counter by remember { mutableStateOf(0) }
+    var name = remember { mutableStateOf("") }
     Column (
         verticalArrangement = Arrangement.Center,
         modifier = modifier.padding(8.dp)
@@ -71,18 +79,20 @@ fun GreetingText(message: String,from: String, modifier: Modifier = Modifier){
 
         )
         Button(
-            onClick = { Log.d("MainActivity", "Button clicked!") },
+            onClick = { counter++
+                Log.d("MainActivity", "Button clicked!")
+                      },
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
                 .size(300.dp, 100.dp),
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color.Blue, // Color de fondo del botón
+                containerColor = Color.Blue, // Color de fondo del n botón
                 contentColor = Color.White,   // Color del texto del botón
 
             )
             ) {
             Text(
-                text = "Click me!",
+                text = "Click me! CLICS: $counter",
                 fontSize = 24.sp,
             )
             }
